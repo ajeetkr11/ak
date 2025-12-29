@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Twinkle 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff85a2;
+            --soft-gold: #f4d03f;
+            --dark-love: #4a0e0e;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff5f7;
+        }
+
+        /* --- Interface 1: Welcome Page --- */
+        #welcome-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+                        url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: opacity 1s ease;
+        }
+
+        .welcome-content {
+            text-align: center;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: var(--primary-pink);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tap-hint {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #888;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- Interface 2: Main Content --- */
+        #main-content {
+            display: none;
+            height: 100vh;
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            padding: 20px;
+            text-align: center;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 1.5s ease-in;
+        }
+
+        .couple-img {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 150px 150px 0 0;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+
+        .shayari-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            font-style: italic;
+            color: var(--dark-love);
+            line-height: 1.8;
+            font-size: 1.3rem;
+        }
+
+        .wish-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #d63384;
+            margin: 10px 0;
+        }
+
+        .name {
+            color: var(--primary-pink);
+            font-weight: bold;
+        }
+
+        /* Floating Hearts Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .heart {
+            position: fixed;
+            color: #ff4d6d;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 999;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="welcome-page" onclick="startExperience()">
+        <div class="welcome-content">
+            <h1>Hey Beautiful...</h1>
+            <p>I have something for you</p>
+            <div class="tap-hint">Tap to Open 💖</div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <h2 class="wish-text">Happy New Year</h2>
+        <h1 class="name">Twinkle 💖</h1>
+
+        <img src="https://images.unsplash.com/photo-1541535650810-10d26f5c2ab3?auto=format&fit=crop&q=80&w=600" 
+             alt="Holding Hands" class="couple-img">
+
+        <div class="shayari-container">
+            <p>
+                "Tera saath ho toh har saal haseen hai,<br>
+                Tere bina ye duniya namkeen hai.<br>
+                Naye saal mein bas yahi dua hai meri,<br>
+                Ki har lamha tu mere kareeb rahe."
+            </p>
+            <p style="font-size: 1rem; margin-top: 15px;">
+                May your year be as bright as your name, Twinkle.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function startExperience() {
+            // Play Music
+            const music = document.getElementById('bgMusic');
+            music.play();
+
+            // Transition Interfaces
+            document.getElementById('welcome-page').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('welcome-page').style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.style.display = 'block';
+                setTimeout(() => {
+                    main.style.opacity = '1';
+                }, 50);
+            }, 1000);
+
+            // Start Heart Rain
+            setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
